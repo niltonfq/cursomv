@@ -2,7 +2,7 @@ package com.abs.cursomc.resource.exception;
 
 import java.io.Serializable;
 
-public class StandardError implements Serializable{
+public class StandardError implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
