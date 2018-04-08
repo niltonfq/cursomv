@@ -1,4 +1,4 @@
-package com.abs.cursomc.resource;
+package com.abs.cursomc.resources;
 
 import java.net.URI;
 import java.util.List;
