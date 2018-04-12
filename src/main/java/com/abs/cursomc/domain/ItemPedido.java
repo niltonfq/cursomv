@@ -12,6 +12,7 @@ public class ItemPedido implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
 	
@@ -74,11 +75,18 @@ public class ItemPedido implements Serializable{
 		return id.getPedido();
 	}
 	
-	@JsonIgnore
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
+	}
+	
 	public Produto getProduto() {
 		return id.getProduto();
 	}
 
+	public void setProduto(Produto produto) {
+		id.setProduto(produto);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
