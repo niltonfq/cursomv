@@ -20,6 +20,7 @@ import com.abs.cursomc.domain.PagamentoComCartao;
 import com.abs.cursomc.domain.Pedido;
 import com.abs.cursomc.domain.Produto;
 import com.abs.cursomc.domain.enums.EstadoPagamento;
+import com.abs.cursomc.domain.enums.Perfil;
 import com.abs.cursomc.domain.enums.TipoCliente;
 import com.abs.cursomc.repositories.CategoriaRepository;
 import com.abs.cursomc.repositories.CidadeRepository;
@@ -116,14 +117,20 @@ public class DBService {
 		est1.getCidades().addAll(Arrays.asList(cid1));
 		est2.getCidades().addAll(Arrays.asList(cid2, cid3));
 		
-		Cliente cli1 = new Cliente(null, "nome 1", "niltonfq@gmail.com", "12345",TipoCliente.PESSOAFISICA,
+		Cliente cli1 = new Cliente(null, "nome 1", "niltonfq@gmail.com", "38327660225",TipoCliente.PESSOAFISICA,
 				be.encode("123"));
+		Cliente cli2= new Cliente(null, "nome 2", "niltonfq2@gmail.com", "27889711506",TipoCliente.PESSOAFISICA,
+				be.encode("123"));
+		cli2.addPerfil(Perfil.ADMIN);
 		cli1.getTelefones().addAll(Arrays.asList("344555","776666"));
+		cli2.getTelefones().addAll(Arrays.asList("88777","58887"));
 		
 		Endereco end1  = new Endereco(null, "rua kmdks", "333", "complemento", "bairro", "98888", cli1, cid1);
 		Endereco end2  = new Endereco(null, "rua kmdks yyyyy", "877", "completo", "bairro 5555", "98888", cli1, cid2);
+		Endereco end3  = new Endereco(null, "rua Avluss ", "877", "", "bairro y", "9", cli1, cid2);
 		
 		cli1.getEnderecos().addAll(Arrays.asList(end1,end2));
+		cli2.getEnderecos().addAll(Arrays.asList(end3));
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
@@ -131,8 +138,8 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1, cid2, cid3));
 		
-		clienteRepository.save(cli1);
-		enderecoRepository.saveAll(Arrays.asList(end1, end2));
+		clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+		enderecoRepository.saveAll(Arrays.asList(end1, end2, end3));
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Pedido ped1 = new Pedido(null, sdf.parse("30/03/2017 00:30"), cli1, end1);
